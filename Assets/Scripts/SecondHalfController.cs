@@ -6,13 +6,14 @@ public class SecondHalfController : MonoBehaviour
 {
     Rigidbody2D rb;
     BoxCollider2D bc;
-    [SerializeField] float speed = 10f;
+    public float Speed { get; set; }
     public bool horizontal;
     Vector2 movementDirection;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -30,6 +31,6 @@ public class SecondHalfController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = (movementDirection * speed * Time.deltaTime);
+        rb.velocity = (movementDirection * Speed * Time.deltaTime);
     }
 }
