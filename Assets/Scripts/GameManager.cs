@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject startingSceneTransition;
     [SerializeField] private GameObject endingSceneTransition;
     public static GameManager instance = null;
+    Animator an1;
+    Animator an2;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,4 +33,6 @@ public class GameManager : MonoBehaviour
         endingSceneTransition.SetActive(true);
         startingSceneTransition.SetActive(false);
     }
+
+
 }

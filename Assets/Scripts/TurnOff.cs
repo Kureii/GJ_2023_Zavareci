@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TurnOff : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Awake()
+    {
+        Invoke("QuitGame", 30f);
+    }
+
+    void QuitGame()
+    {
+        Application.Quit();
+    }
+}
