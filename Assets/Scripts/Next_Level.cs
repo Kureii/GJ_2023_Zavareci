@@ -14,7 +14,7 @@ public class Next_Level : MonoBehaviour
     void Start()
     {
         CharacterConnected = true;
-        LevelChooser = 1;
+        LevelChooser = 0;
     }
 
     void InvertCharacterConnected()
@@ -31,10 +31,24 @@ public class Next_Level : MonoBehaviour
         }
     }
 
-    void SwitchScenes()
+    public void SwitchScenes()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void SceneChooserTransition(int scene)
+    {
+            LevelChooser = scene;
+            GetComponent<GameManager>().TransitionStart();
+            Invoke("SceneChooser", 1);
+    }
+
+    public void SceneChooser()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + LevelChooser);
+        LevelChooser = 0;
     }
+
 
     public void ResetScene()
     {
