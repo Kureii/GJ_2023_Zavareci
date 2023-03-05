@@ -6,9 +6,15 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject startingSceneTransition;
     [SerializeField] private GameObject endingSceneTransition;
+    public static GameManager instance = null;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -17,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         startingSceneTransition.SetActive(true);
         endingSceneTransition.SetActive(false);
+        Debug.Log("Opening Transition");
         Invoke("TransitionEnd",1);
     }
     public void TransitionEnd()

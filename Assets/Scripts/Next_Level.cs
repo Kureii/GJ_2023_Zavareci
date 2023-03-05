@@ -36,13 +36,7 @@ public class Next_Level : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + LevelChooser);
     }
 
-    public void ReloadSceneTransition()
-    {
-       GetComponent<GameManager>().TransitionStart();
-       Invoke("ResetScene", 1);
-    }
-
-    void ResetScene()
+    public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

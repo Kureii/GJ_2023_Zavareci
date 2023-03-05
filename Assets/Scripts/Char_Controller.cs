@@ -82,7 +82,7 @@ public class Char_Controller : MonoBehaviour
         Instantiate(secondHalfVertical, gameObject.transform.position - new Vector3(transform.localScale.x + 0.1f, 0, 0), gameObject.transform.rotation);
         SecondHalfController sc = GameObject.Find("SecondHalfVertical(Clone)").GetComponent<SecondHalfController>();
         sc.Speed = speed;
-        GameObject.Find("GameManager").SendMessage("InvertCharacterConnected");
+        GameObject.Find("GameManager(Clone)").SendMessage("InvertCharacterConnected");
         Connected = false;
         verticalSplitSound.Play();
     }
@@ -98,7 +98,7 @@ public class Char_Controller : MonoBehaviour
         Instantiate(secondHalfHorizontal, gameObject.transform.position - new Vector3(0, gameObject.transform.localScale.y, 0), gameObject.transform.rotation);
         SecondHalfController sc = GameObject.Find("SecondHalfHorizontal(Clone)").GetComponent<SecondHalfController>();
         sc.Speed = speed;
-        GameObject.Find("GameManager").SendMessage("InvertCharacterConnected");
+        GameObject.Find("GameManager(Clone)").SendMessage("InvertCharacterConnected");
         Connected = false;
         horizontalSplitSound.Play();
     }
@@ -113,7 +113,7 @@ public class Char_Controller : MonoBehaviour
         if (collision.tag == "Finish")
         {
             Debug.Log("Bruh");
-            GameObject.Find("GameManager").GetComponent<Next_Level>().SwitchScenesTransition();
+            GameObject.Find("GameManager(Clone)").GetComponent<Next_Level>().SwitchScenesTransition();
         }
     }
 
@@ -124,7 +124,7 @@ public class Char_Controller : MonoBehaviour
             animator.SetBool("afterHorizontalSplit", false);
             animator.SetBool("reconnected", true);
             Destroy(collision.gameObject);
-            GameObject.Find("GameManager").SendMessage("InvertCharacterConnected");
+            GameObject.Find("GameManager(Clone)").SendMessage("InvertCharacterConnected");
             Connected = true;
             sp.sprite = defaultSprite;
             bc.size = new Vector2(bc.size.x, bc.size.y * 2);
@@ -136,7 +136,7 @@ public class Char_Controller : MonoBehaviour
             animator.SetBool("afterVerticalSplit", false);
             animator.SetBool("reconnected", true);
             Destroy(collision.gameObject);
-            GameObject.Find("GameManager").SendMessage("InvertCharacterConnected");
+            GameObject.Find("GameManager(Clone)").SendMessage("InvertCharacterConnected");
             Connected = true;
             sp.sprite = defaultSprite;
             bc.size = new Vector2(bc.size.x * 2, bc.size.y);
