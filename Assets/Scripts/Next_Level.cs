@@ -24,11 +24,17 @@ public class Next_Level : MonoBehaviour
 
     public void SwitchScenesTransition()
     {
-        if (CharacterConnected)
+        if (CharacterConnected == true)
         {
             GetComponent<GameManager>().TransitionStart();
             Invoke("SwitchScenes", 1);
         }
+    }
+
+    public void Play()
+    {
+        GetComponent<GameManager>().TransitionStart();
+        Invoke("SwitchScenes", 1);
     }
 
     public void SwitchScenes()
@@ -38,9 +44,10 @@ public class Next_Level : MonoBehaviour
 
     public void SceneChooserTransition(int scene)
     {
-            LevelChooser = scene;
-            GetComponent<GameManager>().TransitionStart();
-            Invoke("SceneChooser", 1);
+
+        LevelChooser = scene;
+        GetComponent<GameManager>().TransitionStart();
+        Invoke("SceneChooser", 1);
     }
 
     public void SceneChooser()
