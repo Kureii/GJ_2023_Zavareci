@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class MouseDisabler : MonoBehaviour
 {
-    private void OnMouseEnter(Collider2D collision)
+    BoxCollider2D bc;
+
+    private void Start()
     {
-        Debug.Log("EnteredButton");
+        bc = gameObject.GetComponent<BoxCollider2D>();
+    }
+    private void OnMouseEnter()
+    {
+       Debug.Log("EnteredButton");
        GameObject.Find("Player").GetComponent<Char_Controller>().MouseOnMenu = true;
     }
     
-    private void OnMouseExit(Collider2D collision)
+    private void OnMouseExit()
     {
         GameObject.Find("Player").GetComponent<Char_Controller>().MouseOnMenu = false;
     }

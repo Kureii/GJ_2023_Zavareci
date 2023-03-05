@@ -7,31 +7,14 @@ using UnityEngine.SceneManagement;
 public class Next_Level : MonoBehaviour
 {
     private bool CharacterConnected { get; set; }
-    private bool switchinLevels;
-    // Start is called before the first frame update
+    public int LevelChooser { get; set; }
 
-    [SerializeField] private GameObject startingSceneTransition;
+    // Start is called before the first frame update
 
     void Start()
     {
-       CharacterConnected = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        if (collider.tag == "Finish" && CharacterConnected)
-        {
-            Debug.Log("Cíl!");
-            double timer = Time.fixedTimeAsDouble+1.5;
-            GameObject.Find("GameManager").GetComponent<GameManager>().TransitionStart();
-            Invoke("SwitchScenes", 1);
-        }
+        CharacterConnected = true;
+        LevelChooser = 1;
     }
 
     void InvertCharacterConnected()
@@ -39,8 +22,28 @@ public class Next_Level : MonoBehaviour
         CharacterConnected = !CharacterConnected;
     }
 
-    void SwitchScenes() 
+    public void SwitchScenesTransition()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (CharacterConnected)
+        {
+            GetComponent<GameManager>().TransitionStart();
+            Invoke("SwitchScenes", 1);
+        }
+    }
+
+    void SwitchScenes()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + LevelChooser);
+    }
+
+    public void ReloadSceneTransition()
+    {
+       GetComponent<GameManager>().TransitionStart();
+       Invoke("ResetScene", 1);
+    }
+
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
